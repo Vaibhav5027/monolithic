@@ -59,9 +59,15 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public ResponseEntity<Company> companyById(Long id) {
-
-		Company comp = companyRepo.findById(id).get();
-		return new ResponseEntity<Company>(comp, HttpStatus.OK);
+		Company comp = null;
+		Optional<Company> findById = companyRepo.findById(id);
+		if (findById.isPresent()) {
+			comp = findById.get();
+			return new ResponseEntity<Company>(comp, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<Company>(comp, HttpStatus.NOT_FOUND);
+		}
 
 	}
 

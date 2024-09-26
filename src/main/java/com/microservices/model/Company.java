@@ -19,19 +19,15 @@ public class Company {
 	private String name;
 	private String description;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "company")
 	private List<Job> jobs;
 	
-//	private List<Reviews> reviews;
+	
+	@OneToMany(mappedBy = "company")
+	private List<Review> reviews;
 
-	public Long getCompanyId() {
-		return companyId;
-	}
 
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
-	}
 
 	public String getName() {
 		return name;
@@ -55,6 +51,22 @@ public class Company {
 
 	public void setJobs(List<Job> jobs) {
 		this.jobs = jobs;
+	}
+
+	public Long getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 	
 }
